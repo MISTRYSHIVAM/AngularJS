@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Angular js</title>
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+        <script src="./angular.min.js"></script>
+        <style>
+            * {
+                padding: 0px;
+                margin: 0px;
+                font-family: monospace;
+            }
+            .container {
+                width: 100%;
+                height: 100%;
+                background-color: gainsboro;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .input {
+                padding: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div ng-app="firstApp" class="container" ng-controller="demo">
+            <!-- <ul>
+                <li ng-repeat="num in arr | orderBy">{{num}}</li>
+            </ul>
+            <h1>{{userName | uppercase}}</h1> -->
+            <form>
+                <label for="fname">First name :</label>
+                <input type="text" class="input" id="fname" ng-model="fName" />
+                <br />
+                <br />
+                <label for="cricket">Like cricket :</label>
+                <input type="checkbox" id="cricket" ng-model="isLikeCricket" />
+                <br />
+                <input type="radio" ng-model="choice" value="one" />one
+                <input type="radio" ng-model="choice" value="two" />two
+                <br />
+                <select ng-model="track">
+                    <option value="Web">Web</option>
+                    <option value="AI-ML">AI-ML</option>
+                </select>
+            </form>
+            <div ng-switch="choice">
+                <h1 ng-switch-when="one">One</h1>
+                <h1 ng-switch-when="two">Two</h1>
+            </div>
+            <h2>Entered name is {{fName}}</h2>
+            <h2 ng-show="isLikeCricket">Checked</h2>
+            <h2>Trcak is : {{track}}</h2>
+            <button ng-click="callMe()">click me</button>
+        </div>
+        <script>
+            var app = angular.module("firstApp", []);
+            app.controller("demo", function ($scope) {
+                // $scope.arr = [50, 20, 30, 40];
+                // $scope.userName = "mca";
+                $scope.fName = "dcsgu   ";
+                $scope.isLikeCricket = true;
+                $scope.callMe = () => {
+                    alert("hi");
+                };
+                $scope.track;
+            });
+        </script>
+    </body>
+</html>
