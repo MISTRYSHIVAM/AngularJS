@@ -21,8 +21,11 @@
                 align-items: center;
                 justify-content: center;
             }
-            .input {
+            .input{
                 padding: 10px;
+            }
+            fieldset{
+                padding : 5px 15px;
             }
         </style>
     </head>
@@ -33,28 +36,51 @@
             </ul>
             <h1>{{userName | uppercase}}</h1> -->
             <form>
-                <label for="fname">First name :</label>
-                <input type="text" class="input" id="fname" ng-model="fName" />
-                <br />
-                <br />
-                <label for="cricket">Like cricket :</label>
-                <input type="checkbox" id="cricket" ng-model="isLikeCricket" />
-                <br />
-                <input type="radio" ng-model="choice" value="one" />one
-                <input type="radio" ng-model="choice" value="two" />two
-                <br />
-                <select ng-model="track">
-                    <option value="Web">Web</option>
-                    <option value="AI-ML">AI-ML</option>
-                </select>
+
+                <fieldset>
+                    <legend>Text input</legend>
+                    <label for="fname">First name :</label>
+                    <input type="text" class="input" id="fname" ng-model="fName" />
+                    <h2>Entered name is {{fName}}</h2>
+                </fieldset>
+                <!-- <fieldset>
+                    <legend>Email input</legend>
+                    <label for="email">Email :</label>
+                    <input type="email" class="input" ng-model="email" />
+                    <h2 ng-show="email.$dirty">Email is not valid</h2>
+                </fieldset> -->
+                <fieldset>
+                    <legend>Checkbox</legend>
+                    <label for="cricket">Like cricket :</label>
+                    <input type="checkbox" id="cricket" ng-model="isLikeCricket" />
+                    <h2 ng-show="isLikeCricket">Yes he likes cricket.</h2>
+                    <h2 ng-show="!isLikeCricket">No he does not like cricket.</h2>
+                </fieldset>
+                <fieldset>
+                    <legend>Radio button</legend>
+                    <label id="pMethod" ></label>
+                    <input type="radio" ng-model="pMethod" id="pMethod" value="Visa" >Visa
+                    <input type="radio" ng-model="pMethod" id="pMethod" value="Master Card" >Master Card
+                    <input type="radio" ng-model="pMethod" id="pMethod" value="American Express" >American Express
+                    <input type="radio" ng-model="pMethod" id="pMethod" value="Paypal" >Paypal
+                    <div ng-switch="pMethod">
+                        <h2 ng-switch-when="Visa">You selected {{pMethod}} card for payment</h2>
+                        <h2 ng-switch-when="Master Card">You selected {{pMethod}} for payment</h2>
+                        <h2 ng-switch-when="American Express">You selected {{pMethod}} card for payment</h2>
+                        <h2 ng-switch-when="Paypal">You selected {{pMethod}} card for payment</h2>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Dropdown select</legend>
+                    <label for="track" ></label>
+                    <select ng-model="track" id="track">
+                        <option value="Web">Web</option>
+                        <option value="AI-ML">AI-ML</option>
+                    </select>
+                    <h2>Trcak is : {{track}}</h2>
+                </fieldset>
+
             </form>
-            <div ng-switch="choice">
-                <h1 ng-switch-when="one">One</h1>
-                <h1 ng-switch-when="two">Two</h1>
-            </div>
-            <h2>Entered name is {{fName}}</h2>
-            <h2 ng-show="isLikeCricket">Checked</h2>
-            <h2>Trcak is : {{track}}</h2>
             <button ng-click="callMe()">click me</button>
         </div>
         <script>
@@ -62,12 +88,13 @@
             app.controller("demo", function ($scope) {
                 // $scope.arr = [50, 20, 30, 40];
                 // $scope.userName = "mca";
-                $scope.fName = "dcsgu   ";
+                $scope.fName = "Dcsgu";
+                $scope.email = "";
                 $scope.isLikeCricket = true;
                 $scope.callMe = () => {
                     alert("hi");
                 };
-                $scope.track;
+                
             });
         </script>
     </body>
